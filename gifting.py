@@ -19,7 +19,7 @@ mail = outlook.CreateItem(0)
 import random
 import pandas as pd 
 import copy
-df = pd.read_csv('secretsanta.csv') #Enter your .csv form file name here 
+df = pd.read_csv('secretsantavm.csv') #Enter your .csv form file name here 
 mylist = df['Name'].tolist()
 names=mylist
 emails=(df['Name']+" "+df['Email']).tolist()
@@ -92,31 +92,35 @@ for sendername,sender_email,reciver_name,recadd,recnum,item1,item2,item3 in zip(
     mail = outlook.CreateItem(0)
     mail.To = sender_email
     mail.Subject = 'Week of Gifting Buddy Announcement'
-    mail.HTMLBody = """\
+    mail.HTMLBody = """
     <html>
         <head></head>
         <body>
-            <p>Hi – """+ sendername +" 👋!<br> This is an automated email from Week Of Gifting Fun SPOCS .\n<br>You drew<br>✨✨✨✨<b>"+ reciver_name +"""</b>✨✨✨✨<br> \n 
-            <ul>
-            <li>Rule Number 1: Please do not tell anyone! 🤫\n  <br>
-    <li> Rule Number 2: The budget is min 500 and max 1000 INR ! 👛 \n <br></ul> <br><i>What are you waiting for? Go ahead and get something nice for  """ + reciver_name +""" <br> </i>\n 
-    <b>Following is the gifting details of  """ +reciver_name+"""</b ><rr>
-     "<ul>
-     <li> <b>Address</b> 🏠:- """ + recadd + """  <br>
-     <li> <b> Phone_Number ☎️ </b>:- """+ str(recnum)+"""  <br>
-      
-      </ul>
-      <b> Wish list Items 🌠 </b><br> 
-      <ul>
-    <li> <b>"""  + item1 + """\ </b> <br>
-    <li> <b>""" + item2 + """</b><br>
-    <li> <b> """ + item3 + """"</b><br>
-       </ul>
-            </p>
+        Test Email set 7:45 """+str(sender_email)+""" <br>
+        Hi   """+str(sendername)+""" 👋!   <br>
+        This is an automated email from Week Of Gifting Fun SPOCS  <br> <br>
+        You drew ✨✨✨✨  """+str(reciver_name)+""" ✨✨✨✨ <br>
+
+     
+            Rule Number 1: Please do not tell anyone! 🤫\n  <br>
+  Rule Number 2: The budget is min 500 and max 1000 INR ! 👛 \n <br> <br>
+   What are you waiting for? Go ahead and get something nice for  """ + str(reciver_name )+""" <br> 
+
+
+         Following is the gifting details of """+str(reciver_name)+""" <br>
+      <b>Address</b> 🏠:-  """+str(recadd)+""" <br>
+      <b> Phone_Number ☎️ </b>:- """+str(recnum)+ """  <br><br><br>
+        <b> Wish list Items 🌠 </b><br> 
+            Item 1 """+str(item1)+""" <br><br>
+            Item 2  """+str(item2)+""" <br><br>
+          Item 3  """+str(item3)+""" <br><br>
         </body>
     </html>
     """
+
     mail.Send()
+
+
 # -*- coding: utf-8 -*-
 """
 Created on Wed Dec 14 10:19:25 2022
