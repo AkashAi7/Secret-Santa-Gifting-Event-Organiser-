@@ -96,7 +96,6 @@ for sendername,sender_email,reciver_name,recadd,recnum,item1,item2,item3 in zip(
     <html>
         <head></head>
         <body>
-        Test Email set 7:45 """+str(sender_email)+""" <br>
         Hi   """+str(sendername)+""" 👋!   <br>
         This is an automated email from Week Of Gifting Fun SPOCS  <br> <br>
         You drew ✨✨✨✨  """+str(reciver_name)+""" ✨✨✨✨ <br>
