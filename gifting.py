@@ -19,7 +19,42 @@ mail = outlook.CreateItem(0)
 import random
 import pandas as pd 
 import copy
-df = pd.read_csv('secretsantavm.csv') #Enter your .csv form file name here 
+file_path = r'secretsanta.csv'
+
+# Read the Excel file
+df = pd.read_csv(file_path)  #Enter your .csv form file name here 
+df.info()
+df.columns
+
+#Cleaning the data
+
+selected_columns = ['Email', 'Name', 'Which location are you based of?',
+                    'Are you willing to send a gift to someone?',
+                    'Where would you like your gift to be shipped?',
+                    'Phone Number',
+                    'Please mention the complete address where you would like your gift to be delivered?',
+                   'Wishlist Gift-1',
+                   'Wishlist Gift-2','Wishlist Gift-3']
+
+df= df[selected_columns]
+
+
+
+columns_info = {
+    'Email': 'Email',
+    'Name': 'Name',
+    'Are you willing to send a gift to someone?': 'Send_Gift_New',
+    'Phone Number': 'Phone_Number',
+    'Please mention the complete address where you would like your gift to be delivered?': 'Address',
+    'Wishlist Gift-1': 'Wishlist_Gift_1',
+    'Wishlist Gift-2': 'Wishlist_Gift_2',
+    'Wishlist Gift-3': 'Wishlist_Gift_3'
+}
+
+# Create a new DataFrame with the selected columns and their new variable names
+df = df[list(columns_info.keys())].rename(columns=columns_info)
+
+
 mylist = df['Name'].tolist()
 names=mylist
 emails=(df['Name']+" "+df['Email']).tolist()
@@ -102,7 +137,7 @@ for sendername,sender_email,reciver_name,recadd,recnum,item1,item2,item3 in zip(
 
      
             Rule Number 1: Please do not tell anyone! 🤫\n  <br>
-  Rule Number 2: The budget is min 500 and max 1000 INR ! 👛 \n <br> <br>
+  Rule Number 2: The budget is  500! 👛 \n <br> <br>
    What are you waiting for? Go ahead and get something nice for  """ + str(reciver_name )+""" <br> 
 
 
@@ -118,6 +153,7 @@ for sendername,sender_email,reciver_name,recadd,recnum,item1,item2,item3 in zip(
     """
 
     mail.Send()
+    print("Sent")
 
 
 # -*- coding: utf-8 -*-
